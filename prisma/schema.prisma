@@ -1,0 +1,29 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Account {
+  id        String   @id
+  balance   Decimal  @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([createdAt])
+  @@index([updatedAt])
+}
+
+model EventLog {
+  id            String   @id
+  type          String
+  originId      String
+  destinationId String?
+  amount        Decimal
+  createdAt     DateTime @default(now())
+
+  @@index([createdAt])
+}
