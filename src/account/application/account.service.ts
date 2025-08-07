@@ -41,4 +41,17 @@ export class AccountService {
             throw new Error('Failed to save accounts');
         }
     }
+
+    async getBalance(accountId: string): Promise<number | null> {
+        try {
+            const account = await this.findAccountById(accountId);
+            if (!account) {
+                return null;
+            }
+            return account.balance.toNumber();
+        } catch (error) {
+            console.error('Error fetching account balance:', error);
+            throw new Error('Failed to fetch account balance');
+        }
+    }
 }

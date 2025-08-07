@@ -1,5 +1,4 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
 import { PrismaService } from './database/prisma.service';
 import { AccountRepository } from './account/domain/repository/account-repository';
 import { PrismaAccountRepository } from './account/infrastructure/repository/prisma-account-repository';
@@ -10,12 +9,13 @@ import { EventContextInterface } from './events/domain/application/event-context
 import { DepositServiceEstrategy } from './events/application/estrategies/deposit.service';
 import { TransferServiceStrategy } from './events/application/estrategies/transfer.service';
 import { WithdrawServiceStrategy } from './events/application/estrategies/withdraw.service';
+import { AccountController } from './account/infrastructure/controller/account.controller';
 
 @Module({
   imports: [],
   controllers: [
     EventController,
-    AppController,
+    AccountController,
   ],
   providers: [
     PrismaService,
