@@ -1,10 +1,10 @@
-import { IsNotEmpty, IsNumber } from "class-validator";
+import { IsNotEmpty, IsNumber, IsString } from "class-validator";
 
 
 export class AccountModel {
     @IsNotEmpty()
-    @IsNumber()
-    id: number;
+    @IsString()
+    id: string;
 
     @IsNotEmpty()
     @IsNumber()
