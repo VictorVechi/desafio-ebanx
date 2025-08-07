@@ -24,6 +24,17 @@ export class PrismaAccountRepository implements AccountRepository {
 
         return result;
     }
+
+    async saveAll(accounts: AccountModel[]): Promise<Account[]> {
+        const savedAccounts: Account[] = [];
+        for (const account of accounts) {
+            const savedAccount = await this.save(account);
+            savedAccounts.push(savedAccount);
+        }
+        return savedAccounts;
+    }
+
+
     async delete(id: string): Promise<void> {
         await this.prismaService.account.delete({
             where: { id },

@@ -32,4 +32,13 @@ export class AccountService {
             throw new Error('Failed to save account');
         }
     }
+
+    async saveAccounts(accounts: AccountModel[]): Promise<Account[]> {
+        try {
+            return await this.accountRepository.saveAll(accounts);
+        } catch (error) {
+            console.error('Error saving accounts:', error);
+            throw new Error('Failed to save accounts');
+        }
+    }
 }

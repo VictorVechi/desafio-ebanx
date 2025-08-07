@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { IsDate, IsNotEmpty, IsNumber, IsOptional, IsString } from "class-validator";
 
 
 export class AccountModel {
@@ -9,4 +9,8 @@ export class AccountModel {
     @IsNotEmpty()
     @IsNumber()
     balance: number;
+
+    @IsOptional()
+    @IsDate()
+    updatedAt?: Date;
 }

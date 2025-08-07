@@ -5,7 +5,7 @@ import { DepositServiceEstrategy } from './estrategies/deposit.service';
 import { TransferServiceStrategy } from './estrategies/transfer.service';
 import { WithdrawServiceStrategy } from './estrategies/withdraw.service';
 import { EventType } from '../domain/enum/event-enum';
-import { DepositResponseDto } from '../domain/dto/deposit-response.dto';
+import { EventResponseDto } from '../domain/dto/event-response.dto';
 
 
 @Injectable()
@@ -16,7 +16,7 @@ export class EventContextService implements EventContextInterface {
         private readonly withdrawService: WithdrawServiceStrategy,
     ){}
 
-    async processEvent(event: EventDto): Promise<DepositResponseDto | any> {
+    async processEvent(event: EventDto): Promise<EventResponseDto> {
         switch (event.type.toLowerCase()) {
             case EventType.DEPOSIT:
                 return await this.depositService.executeTransaction(event);
