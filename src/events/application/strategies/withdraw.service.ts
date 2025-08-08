@@ -12,9 +12,6 @@ export class WithdrawServiceStrategy implements EventStrategy {
     constructor(private readonly accountService: AccountService) {}
     async executeTransaction(event: EventDto): Promise<WithdrawResponseDto | null> {
         const withdrawData = this.validateEvent(event);
-        if (!withdrawData) {
-            throw new Error("Invalid withdraw event data");
-        }
 
         const account = await this.accountService.findAccountById(withdrawData.id);
         if (!account) {
@@ -34,9 +31,9 @@ export class WithdrawServiceStrategy implements EventStrategy {
         return this.toJson(savedAccount);
     }
 
-    private validateEvent(event: EventDto): AccountModel | null {
+    private validateEvent(event: EventDto): AccountModel {
         if (!event.origin || event.amount <= 0) {
-            return null;
+            throw new Error("Invalid withdraw event data");
         }
 
         return {

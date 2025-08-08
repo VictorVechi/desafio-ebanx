@@ -13,11 +13,9 @@ export class DepositServiceEstrategy implements EventStrategy {
     async executeTransaction(event: EventDto): Promise<DepositResponseDto> {
 
         const depositData = this.validateEvent(event);
-        if (!depositData) {
-            throw new Error("Invalid deposit event data");
-        }
 
         const account = await this.accountService.findAccountById(depositData.id);
+
         if (!account) {
             const newAccount = await this.accountService.saveAccount(depositData);
             return this.toJson(newAccount);
@@ -36,9 +34,9 @@ export class DepositServiceEstrategy implements EventStrategy {
         return this.toJson(savedAccount);
     }
 
-    private validateEvent(event: EventDto): AccountModel | null {
-        if (!event.type || !event.destination || !event.amount) {
-            return null;
+    private validateEvent(event: EventDto): AccountModel {
+        if (!event.destination || !event.amount) {
+            throw new Error("Invalid deposit event data");
         }
 
         return {
