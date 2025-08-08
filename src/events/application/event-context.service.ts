@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { EventDto } from '../domain/dto/event.dto';
 import { EventContextInterface } from '../domain/application/event-context-interface';
-import { DepositServiceEstrategy } from './estrategies/deposit.service';
-import { TransferServiceStrategy } from './estrategies/transfer.service';
-import { WithdrawServiceStrategy } from './estrategies/withdraw.service';
+import { DepositServiceEstrategy } from './strategies/deposit.service';
+import { TransferServiceStrategy } from './strategies/transfer.service';
+import { WithdrawServiceStrategy } from './strategies/withdraw.service';
 import { EventType } from '../domain/enum/event-enum';
 import { EventResponseDto } from '../domain/dto/event-response.dto';
 
@@ -14,7 +14,7 @@ export class EventContextService implements EventContextInterface {
         private readonly depositService: DepositServiceEstrategy,
         private readonly transferService: TransferServiceStrategy,
         private readonly withdrawService: WithdrawServiceStrategy,
-    ){}
+    ) {}
 
     async processEvent(event: EventDto): Promise<EventResponseDto> {
         switch (event.type.toLowerCase()) {

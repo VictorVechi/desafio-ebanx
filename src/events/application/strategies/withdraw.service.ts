@@ -15,7 +15,7 @@ export class WithdrawServiceStrategy implements EventStrategy {
         if (!withdrawData) {
             throw new Error("Invalid withdraw event data");
         }
-        
+
         const account = await this.accountService.findAccountById(withdrawData.id);
         if (!account) {
             return null;
@@ -28,7 +28,7 @@ export class WithdrawServiceStrategy implements EventStrategy {
             balance: updatedBalance,
             updatedAt: new Date(),
         };
-        
+
         const savedAccount = await this.accountService.saveAccount(updatedAccount);
 
         return this.toJson(savedAccount);

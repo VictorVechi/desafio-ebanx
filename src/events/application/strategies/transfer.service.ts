@@ -17,7 +17,7 @@ export class TransferServiceStrategy implements EventStrategy {
         const transferData = this.validateEvent(event);
 
         const originAccount = await this.accountService.findAccountById(transferData.origin);
-        
+
         if (!originAccount) {
             return null;
         }
@@ -64,7 +64,7 @@ export class TransferServiceStrategy implements EventStrategy {
 
     private async getOrCreateDestinationAccount(destinationId: string): Promise<Account> {
         let destinationAccount = await this.accountService.findAccountById(destinationId);
-        
+
         if (!destinationAccount) {
             const newAccount: AccountModel = {
                 id: destinationId,
@@ -73,7 +73,7 @@ export class TransferServiceStrategy implements EventStrategy {
 
             destinationAccount = await this.accountService.saveAccount(newAccount);
         }
-        
+
         return destinationAccount;
     }
 

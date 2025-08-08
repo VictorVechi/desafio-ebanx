@@ -6,7 +6,7 @@ import { PrismaService } from "src/database/prisma.service";
 
 @Injectable()
 export class PrismaAccountRepository implements AccountRepository {
-    constructor(private readonly prismaService: PrismaService) {}
+    constructor(private readonly prismaService: PrismaService) { }
 
 
     async findById(id: string): Promise<Account | null> {
@@ -16,7 +16,7 @@ export class PrismaAccountRepository implements AccountRepository {
     }
 
     async save(account: AccountModel): Promise<Account> {
-       const result = await this.prismaService.account.upsert({
+        const result = await this.prismaService.account.upsert({
             where: { id: account.id },
             create: account,
             update: account,
@@ -40,7 +40,7 @@ export class PrismaAccountRepository implements AccountRepository {
             where: { id },
         });
     }
-    
+
     async resetTable(): Promise<void> {
         await this.prismaService.account.deleteMany({});
     }

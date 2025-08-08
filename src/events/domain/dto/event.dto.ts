@@ -12,7 +12,7 @@ export class EventDto {
     @IsString()
     @IsOptional()
     destination: string;
-    
+
     @IsNotEmpty()
     @IsNumber()
     amount: number;

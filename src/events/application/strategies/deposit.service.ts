@@ -11,7 +11,7 @@ import { EventDto } from "src/events/domain/dto/event.dto";
 export class DepositServiceEstrategy implements EventStrategy {
     constructor(private readonly accountService: AccountService) {}
     async executeTransaction(event: EventDto): Promise<DepositResponseDto> {
-        
+
         const depositData = this.validateEvent(event);
         if (!depositData) {
             throw new Error("Invalid deposit event data");
