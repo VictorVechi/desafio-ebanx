@@ -14,6 +14,7 @@ export class EventController {
             const response = await this.eventContext.processEvent(body);
             if (!response) {
                 res.status(HttpStatus.NOT_FOUND).send(0);
+                return;
             }
             res.status(HttpStatus.CREATED).send(response);
         } catch (error) {

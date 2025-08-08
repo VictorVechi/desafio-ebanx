@@ -16,14 +16,3 @@ model Account {
   @@index([createdAt])
   @@index([updatedAt])
 }
-
-model EventLog {
-  id            String   @id
-  type          String
-  originId      String?
-  destinationId String?
-  amount        Decimal
-  createdAt     DateTime @default(now())
-
-  @@index([createdAt])
-}
