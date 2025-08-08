@@ -7,11 +7,11 @@ export class EventDto {
 
     @IsOptional()
     @IsString()
-    origin: string;
+    origin?: string;
 
     @IsString()
     @IsOptional()
-    destination: string;
+    destination?: string;
 
     @IsNotEmpty()
     @IsNumber()

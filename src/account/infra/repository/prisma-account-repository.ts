@@ -8,7 +8,6 @@ import { PrismaService } from "src/database/prisma.service";
 export class PrismaAccountRepository implements AccountRepository {
     constructor(private readonly prismaService: PrismaService) { }
 
-
     async findById(id: string): Promise<Account | null> {
         return this.prismaService.account.findUnique({
             where: { id },
@@ -32,13 +31,6 @@ export class PrismaAccountRepository implements AccountRepository {
             savedAccounts.push(savedAccount);
         }
         return savedAccounts;
-    }
-
-
-    async delete(id: string): Promise<void> {
-        await this.prismaService.account.delete({
-            where: { id },
-        });
     }
 
     async resetTable(): Promise<void> {

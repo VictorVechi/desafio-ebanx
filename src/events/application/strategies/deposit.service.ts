@@ -8,7 +8,7 @@ import { EventDto } from "src/events/domain/dto/event.dto";
 
 
 @Injectable()
-export class DepositServiceEstrategy implements EventStrategy {
+export class DepositServiceStrategy implements EventStrategy {
     constructor(private readonly accountService: AccountService) {}
     async executeTransaction(event: EventDto): Promise<DepositResponseDto> {
 

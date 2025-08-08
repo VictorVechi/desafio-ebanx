@@ -6,7 +6,7 @@ import { EventDto } from "src/events/domain/dto/event.dto";
 
 @Controller()
 export class EventController {
-    constructor(private readonly eventContext: EventContextInterface) { }
+    constructor(private readonly eventContext: EventContextInterface) {}
 
     @Post('/event')
     async handleEvent(@Body() body: EventDto, @Res() res: Response): Promise<void> {

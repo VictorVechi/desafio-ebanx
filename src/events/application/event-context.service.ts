@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { EventDto } from '../domain/dto/event.dto';
 import { EventContextInterface } from '../domain/application/event-context-interface';
-import { DepositServiceEstrategy } from './strategies/deposit.service';
+import { DepositServiceStrategy } from './strategies/deposit.service';
 import { TransferServiceStrategy } from './strategies/transfer.service';
 import { WithdrawServiceStrategy } from './strategies/withdraw.service';
 import { EventType } from '../domain/enum/event-enum';
@@ -11,7 +11,7 @@ import { EventResponseDto } from '../domain/dto/event-response.dto';
 @Injectable()
 export class EventContextService implements EventContextInterface {
     constructor(
-        private readonly depositService: DepositServiceEstrategy,
+        private readonly depositService: DepositServiceStrategy,
         private readonly transferService: TransferServiceStrategy,
         private readonly withdrawService: WithdrawServiceStrategy,
     ) {}

@@ -49,17 +49,19 @@ export class TransferServiceStrategy implements EventStrategy {
     }
 
     private handleOperation(event: TransferDto, account: Account, operation: string): number {
+        let newBalance: number = 0;
         switch (operation) {
             case OperationEnum.DEBIT:
                 if (account.balance.toNumber() < event.amount) {
                     throw new Error("Insufficient funds for transfer");
                 }
-                return ((account.balance.toNumber() * 1000) - (event.amount * 1000)) / 1000;
+                newBalance = ((account.balance.toNumber() * 1000) - (event.amount * 1000)) / 1000;
+                break;
             case OperationEnum.CREDIT:
-                return ((account.balance.toNumber() * 1000) + (event.amount * 1000)) / 1000;
-            default:
-                return account.balance.toNumber();
+                newBalance = ((account.balance.toNumber() * 1000) + (event.amount * 1000)) / 1000;
+                break;
         }
+        return newBalance;
     }
 
     private async getOrCreateDestinationAccount(destinationId: string): Promise<Account> {

@@ -6,6 +6,5 @@ export abstract class AccountRepository {
     abstract findById(id: string): Promise<Account | null>;
     abstract save(account: AccountModel): Promise<Account>;
     abstract saveAll(accounts: AccountModel[]): Promise<Account[]>
-    abstract delete(id: string): Promise<void>;
     abstract resetTable(): Promise<void>;
 }
